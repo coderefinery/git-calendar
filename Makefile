@@ -22,6 +22,7 @@ build: $(OUT)
 	@echo "<ul>" >> out/index.html
 	@echo   "<li>Google calendar: Other calendars (left sidebar) → \"+\" to add new → From URL.</li>" >> out/index.html
 	@echo "<li>Outlook web: Add Calendar → Subscribe from web.</li>" >> out/index.html
+	@echo "<li>Thunderbird: Left sidebar → Calendar → \"+\" to add new → On the network → This location doesn't require credentials → paste URL → (carry on).  Please set to update every 60 minutes or less frequently.</li>" >> out/index.html
 	@echo   "</ul>" >> out/index.html
 	@echo -n "<br>Last update: $$(date) (git revision $(shell git rev-parse --short HEAD))" >> out/index.html
 
