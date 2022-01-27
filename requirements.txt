@@ -1,1 +1,2 @@
-yaml2ics/requirements.txt
+-r yaml2ics/requirements.txt
+mutt-ics

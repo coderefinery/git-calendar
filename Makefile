@@ -9,7 +9,12 @@ build: $(OUT)
 	for file in $${files}; do \
 	    if test "$${file}" = "example.ics" -a -n "$(GITHUB_REPOSITORY)" -a "$(GITHUB_REPOSITORY)" != "coderefinery/git-calendar" ; then continue ; fi ; \
 	    echo $${file} ; \
-	    echo "<li><a href=\"$$file\">$$file</a></br></li>" >> out/index.html ; \
+            TZ=Europe/Stockholm mutt-ics out/$$file  | sed 's/^Subject:/\n\n----------\nSubject:/' > out/$$file.stockholm.txt ; \
+            TZ=Europe/Helsinki mutt-ics out/$$file  | sed 's/^Subject:/\n\n----------\nSubject:/' > out/$$file.helsinki.txt ; \
+	    echo "<li><a href=\"$$file\">$$file</a>" >> out/index.html ; \
+	    echo "(<a href=\"$$file.stockholm.txt\">text, Stockholm times</a>)" >> out/index.html ; \
+	    echo "(<a href=\"$$file.helsinki.txt\">text, Helsinki times</a>)" >> out/index.html ; \
+	    echo "</br></li>" >> out/index.html ; \
 	done
 	@echo "</ul>" >> out/index.html
 	@echo "<br>" >> out/index.html
@@ -29,4 +34,4 @@ clean:
 	rm -r out || true
 
 install:
-	pip install -r yaml2ics/requirements.txt
+	pip install -r requirements.txt
