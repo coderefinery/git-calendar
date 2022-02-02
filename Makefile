@@ -26,9 +26,14 @@ build: $(OUT)
 	@echo   "</ul>" >> out/index.html
 	@echo -n "<br>Last update: $$(date) (git revision $(shell git rev-parse --short HEAD))" >> out/index.html
 
+
+THIS_MAKEFILE := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
+MAKEFILE_DIR := $(dir $(realpath $(THIS_MAKEFILE)))
+
 out/%.ics: calendars/%.yaml
 	mkdir -p out
-	python3 yaml2ics/yaml2ics.py $< > $@
+	echo $(MAKEFILE_DIR)
+	python3 $(MAKEFILE_DIR)/yaml2ics/yaml2ics.py $< > $@
 
 
 clean:
