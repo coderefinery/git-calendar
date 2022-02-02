@@ -8,15 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: true
+          submodules: recursive
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          ls -l || true
-          ls -l yaml2ics/ || true
+          git sm status --recursive
           make install
       - name: build
         run: |
