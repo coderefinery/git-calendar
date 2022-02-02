@@ -15,7 +15,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          git sm status --recursive
+          git submodule status --recursive
           make install
       - name: build
         run: |
