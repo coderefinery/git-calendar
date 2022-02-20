@@ -1,0 +1,36 @@
+<html>
+<head>
+</head>
+<body>
+
+  Available calendars:
+
+  <ul>
+    {% for c in calendars if not c.base == 'example'%}
+    <li>
+      <a href="{{ c.fics }}">{{ c.fics }}{% if c.data.name %}: {{ c.data.name }}{% endif %}</a>
+      {% if c.data.description %} {{c.data.description}} {% endif %}
+      {%- if timezones -%}
+      (view in {% for tz in timezones -%}
+      <a href="{{c.fics}}.{{tz.tzslug}}.txt">{{tz.tz}}</a>{%if not loop.last%}, {% endif %}
+      {%- endfor -%}
+      )
+      {%- endif%}
+    </li>
+    {%- endfor %}
+  </ul>
+
+  To subscribe to a calendar:
+
+  <ul>
+    <li>Google calendar: Other calendars (left sidebar) → "+" to add new → From URL.</li>
+    <li>Outlook web: Add Calendar → Subscribe from web.</li>
+    <li>Thunderbird: Left sidebar → Calendar → "+" to add new → On the network → This location doesn't require credentials → paste URL → (carry on).  Please set to update infrequently.</li>
+  </ul>
+
+  <p>Last update: {{timestamp}} (git revision {{git_hash}})</p>
+
+
+
+</body>
+</html>

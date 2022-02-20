@@ -1,2 +1,4 @@
 -r yaml2ics/requirements.txt
+jinja2
 mutt-ics
+pyyaml
