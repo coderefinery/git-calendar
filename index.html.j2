@@ -3,7 +3,7 @@
 </head>
 <body>
 
-  Available calendars:
+  Available calendars for this organization:
 
   <ul>
     {% for c in calendars if not c.base == 'example'%}
@@ -20,7 +20,13 @@
     {%- endfor %}
   </ul>
 
-  To subscribe to a calendar:
+  <p>
+  You can subscribe to these calendars in your calendar program.  This
+  will periodically import the events by polling the URL, so that you
+  get updates (usually with a few hours of delay).  Most programs
+  implement this as creating a new calendar which can be toggled on or
+  off.
+  </p>
 
   <ul>
     <li>Google calendar: Other calendars (left sidebar) → "+" to add new → From URL.</li>
