@@ -41,7 +41,9 @@ corner cases.
 
 ## See Also
 
-* This directly uses https://github.com/scientific-python/yaml2ics
+* This directly uses https://github.com/scientific-python/yaml2ics as
+  the yaml to ical generator - if you want to create your own build
+  system, use that directly.
 * yaml2ics uses https://github.com/ics-py/ics-py/
-* Another (old, unmaintained) yaml-to-ics is
+* Another (old, unmaintained, not really usable) yaml-to-ics is
   https://github.com/priyeshpatel/yaml-to-ical
