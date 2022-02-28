@@ -19,7 +19,7 @@ jobs:
           make install
       - name: build
         run: |
-          make build
+          make build BUILDARGS=--edit-link=https://github.com/$GITHUB_REPOSITORY
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

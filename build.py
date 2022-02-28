@@ -16,6 +16,7 @@ def main(argv):
     parser.add_argument('--index', '-i', help="output index file", type=str)
     parser.add_argument('--yaml2ics', help="yaml2ics path", type=str, default='yaml2ics')
     parser.add_argument('--timezone', action='append', help="zoneinfo timezone names", type=str, default=[])
+    parser.add_argument('--edit-link', help='Link to edit, will be added to the generated page.')
     args = parser.parse_args(argv)
 
     calendars = [ ]
@@ -54,6 +55,7 @@ def main(argv):
             timezones=timezones,
             timestamp=timestamp,
             git_hash=git_hash,
+            edit_link=args.edit_link
             )
         open(args.index, 'w').write(index)
 

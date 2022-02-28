@@ -34,9 +34,12 @@
     <li>Thunderbird: Left sidebar → Calendar → "+" to add new → On the network → This location doesn't require credentials → paste URL → (carry on).  Please set to update infrequently.</li>
   </ul>
 
+  {% if edit_link %}
+  <p><a href="{{ edit_link }}">You can add or edit events through
+  this GitHub repository</a>.</p>
+  {% endif %}
+
   <p>Last update: {{timestamp}} (git revision {{git_hash}})</p>
-
-
 
 </body>
 </html>
