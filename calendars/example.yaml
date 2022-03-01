@@ -2,26 +2,47 @@ name: Public events
 timezone: Europe/Helsinki
 
 events:
-  - summary: Test event
-    #id: test1
+  # Allowed keywords straight from Event.__init__ keyword arguments:
+  # https://icspy.readthedocs.io/en/stable/api.html#event
+  - summary: One-time event
     description: |
-      Line1
-      Line2
-      https://scicomp.aalto.fi
+      Line 1
+      Line 2
     location: https://meet.jit.si/example
-    begin: 2021-09-30 12:00:00
+    begin: 2021-09-30 12:00:00   # warning: full seconds needed
     duration: { minutes: 60 }
+    # end: 2021-09-30 13:00:00   # duration OR end
 
-  - summary: Test recurring event
-    #id: test2
+  - summary: Recurring event
     description: |
-      Line1
-      Line2
-      https://scicomp.aalto.fi
+      Line 1
+      Line 2
     location: https://meet.jit.si/example
     begin: 2022-02-02 12:00:00
     duration: { hours: 4 }
     repeat:
-      interval: {days: 1}
+      interval: {days: 1}           # seconds, minutes, hours, days,
+                                    # weeks, months, years
       until: 2022-02-04 12:00:00    # warning: date-only means 00:00,
                                     # so end date is excluded.
+
+  - summary: All-day event
+    begin: 2022-03-01
+
+  - summary: Multi-day event
+    begin: 2022-02-28
+    end: 2022-03-05                 # TODO: check if end date excluded, probably is
+
+
+  # We can use a nice trick of YAML (anchors and references) to make a
+  # series of events that have the same template and only a small
+  # variation.
+  # The & is the anchor: it identifies this mapping as 'ref-name'
+  - &ref-name
+    summary: Template event
+    begin: 2022-03-01 15:00:00
+    duration: {hours: 1}
+  # This uses the 'ref-name' template, and then overrides certain
+  # fields: in this case, the 'begin'.
+  - <<: *ref-name
+    begin: 2022-03-08 15:00:00
