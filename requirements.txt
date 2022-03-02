@@ -1,4 +1,2 @@
--r yaml2ics/requirements.txt
-jinja2
-mutt-ics
-pyyaml
+.
+https://github.com/ics-py/ics-py/archive/refs/heads/main.zip

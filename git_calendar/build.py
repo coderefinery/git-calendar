@@ -1,5 +1,6 @@
 import argparse
 import os
+from os.path import dirname, join
 import subprocess
 import sys
 import time
@@ -7,14 +8,14 @@ import time
 import jinja2
 import yaml
 
+import yaml2ics
 
 
-def main(argv):
+def main(argv=sys.argv[1:]):
     parser = argparse.ArgumentParser()
     parser.add_argument('inputs', nargs='+', help="input files")
     parser.add_argument('--output', '-o', help="output directory", type=str)
     parser.add_argument('--index', '-i', help="output index file", type=str)
-    parser.add_argument('--yaml2ics', help="yaml2ics path", type=str, default='yaml2ics')
     parser.add_argument('--timezone', action='append', help="zoneinfo timezone names", type=str, default=[])
     parser.add_argument('--edit-link', help='Link to edit, will be added to the generated page.')
     args = parser.parse_args(argv)
@@ -23,20 +24,20 @@ def main(argv):
     timezones = [ ]
     for timezone in args.timezone:
         timezones.append({'tz': timezone, 'tzslug': timezone.replace('/', '-')})
+    if not os.path.exists(args.output):
+        os.mkdir(args.output)
 
     for f in args.inputs:
+        print(f"processing {f}", file=sys.stderr)
         calendar = { }
         calendar['data'] = yaml.safe_load(open(f))
         calendar['fbase'] = fbase = os.path.splitext(os.path.basename(f))[0]
         calendar['fics'] = fics = fbase + '.ics'
-        cmd = f'{args.yaml2ics} {f} > {args.output}/{fics}'
-        print(cmd)
-        subprocess.run(cmd, shell=True, check=True)
-        calendars.append(calendar)
-        for tzdata in timezones:
-            cmd = fr'TZ={tzdata["tz"]} mutt-ics out/{fics} | sed "s/^Subject:/\n\n----------\nSubject:/" > out/{fics}.{tzdata["tzslug"]}.txt'
-            print(cmd)
-            os.system(cmd)
+        output = join(args.output, fics)
+
+        calendar = yaml2ics.files_to_calendar([f])
+        open(output, 'w').write(calendar.serialize())
+
 
     if args.index:
         timestamp = subprocess.check_output('date', encoding='utf8').strip() # subprocess to get timezone
@@ -45,11 +46,11 @@ def main(argv):
 
         env = jinja2.Environment(
             #loader=PackageLoader('yourapplication', 'templates'),
-            loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+            loader=jinja2.FileSystemLoader(join(dirname(__file__), 'templates')),
             autoescape=jinja2.select_autoescape(['html', 'xml'])
         )
         template = env.get_template('index.html.j2')
-        print(f'Writing index to {args.index}')
+        print(f'Writing index to {args.index}', file=sys.stderr)
         index = template.render(
             calendars=calendars,
             timezones=timezones,
