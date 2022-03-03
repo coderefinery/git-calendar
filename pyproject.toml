@@ -16,7 +16,7 @@ dependencies = [
     "pyyaml",
     # TODO: how to install from github here?  Then remove this
     # from requirements.txt
-    #"https://github.com/ics-py/ics-py/archive/refs/heads/main.zip",
+    "ics @ https://github.com/ics-py/ics-py/archive/refs/heads/main.zip",
 ]
 
 [project.scripts]
