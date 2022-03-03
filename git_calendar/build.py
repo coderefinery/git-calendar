@@ -33,6 +33,7 @@ def main(argv=sys.argv[1:]):
         calendar['data'] = yaml.safe_load(open(f))
         calendar['fbase'] = fbase = os.path.splitext(os.path.basename(f))[0]
         calendar['fics'] = fics = fbase + '.ics'
+        calendars.append(calendar)
         output = join(args.output, fics)
 
         calendar = yaml2ics.files_to_calendar([f])
