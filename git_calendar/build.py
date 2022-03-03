@@ -1,6 +1,8 @@
 import argparse
 import os
 from os.path import dirname, join
+from pathlib import Path
+import shutil
 import subprocess
 import sys
 import time
@@ -10,6 +12,7 @@ import yaml
 
 import yaml2ics
 
+TEMPLATE_DIR = Path(__file__).parent/'templates'
 
 def main(argv=sys.argv[1:]):
     parser = argparse.ArgumentParser()
@@ -47,7 +50,7 @@ def main(argv=sys.argv[1:]):
 
         env = jinja2.Environment(
             #loader=PackageLoader('yourapplication', 'templates'),
-            loader=jinja2.FileSystemLoader(join(dirname(__file__), 'templates')),
+            loader=jinja2.FileSystemLoader([TEMPLATE_DIR]),
             autoescape=jinja2.select_autoescape(['html', 'xml'])
         )
         template = env.get_template('index.html.j2')
@@ -59,6 +62,7 @@ def main(argv=sys.argv[1:]):
             git_hash=git_hash,
             edit_link=args.edit_link
             )
+        shutil.copy(TEMPLATE_DIR/'style.css', Path(args.index).parent/'style.css')
         open(args.index, 'w').write(index)
 
 
