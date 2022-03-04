@@ -42,6 +42,13 @@ def main(argv=sys.argv[1:]):
         calendar = yaml2ics.files_to_calendar([f])
         open(output, 'w').write(calendar.serialize())
 
+        # Generate the rendered views in different timezones
+        for tzdata in timezones:
+            # This is clearly a hack, calling the shell commands.  This should
+            # be improved later.
+            subprocess.check_output(
+                fr"TZ={tzdata['tz']} mutt-ics out/{fics}  | sed 's/^Subject:/\n\n----------\nSubject:/' > out/{fics}.{tzdata['tzslug']}.txt",
+                shell=True)
 
     if args.index:
         timestamp = subprocess.check_output('date', encoding='utf8').strip() # subprocess to get timezone
