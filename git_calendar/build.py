@@ -16,7 +16,7 @@ TEMPLATE_DIR = Path(__file__).parent/'templates'
 
 def main(argv=sys.argv[1:]):
     parser = argparse.ArgumentParser()
-    parser.add_argument('inputs', nargs='+', help="input files")
+    parser.add_argument('inputs', nargs='+', help="input files", type=Path)
     parser.add_argument('--output', '-o', help="output directory", type=str)
     parser.add_argument('--index', '-i', help="output index file", type=str)
     parser.add_argument('--timezone', action='append', help="zoneinfo timezone names", type=str, default=[])
@@ -25,12 +25,17 @@ def main(argv=sys.argv[1:]):
 
     calendars = [ ]
     timezones = [ ]
+    config = None
     for timezone in args.timezone:
         timezones.append({'tz': timezone, 'tzslug': timezone.replace('/', '-')})
     if not os.path.exists(args.output):
         os.mkdir(args.output)
 
     for f in args.inputs:
+        if f.stem == '_config':
+            print(f"processing config metadata {f}", file=sys.stderr)
+            config = yaml.safe_load(open(f))
+            continue
         print(f"processing {f}", file=sys.stderr)
         calendar = { }
         calendar['data'] = yaml.safe_load(open(f))
@@ -67,7 +72,8 @@ def main(argv=sys.argv[1:]):
             timezones=timezones,
             timestamp=timestamp,
             git_hash=git_hash,
-            edit_link=args.edit_link
+            edit_link=args.edit_link,
+            config=config,
             )
         shutil.copy(TEMPLATE_DIR/'style.css', Path(args.index).parent/'style.css')
         open(args.index, 'w').write(index)

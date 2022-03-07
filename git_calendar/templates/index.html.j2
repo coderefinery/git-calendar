@@ -12,11 +12,24 @@
 
     <link href="css/style.css" rel="stylesheet">
 
-    <title>{{ title or 'Calendars'}}</title>
+    <title>{{ config.title or 'Calendars'}}</title>
   </head>
 
   <body>
     <div class="container">
+      {% if config %}
+
+      {% if config.title %}<h2>{{config.title}}</h2>{% endif %}
+
+      {% if config.description %}
+      <p>
+	{{ config.description }}
+      </p>
+      {% endif %}
+
+      {% endif %}
+
+
       <h2>Available calendars</h2>
       <ul>
 	{% for c in calendars if not c.base == 'example'%}
