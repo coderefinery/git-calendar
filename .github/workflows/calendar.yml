@@ -1,3 +1,6 @@
+# Created as part of the git-calendar project
+# License of this file: CC-0 (=public domain)
+
 name: Generate calendar
 on: [push, pull_request]
 env:
