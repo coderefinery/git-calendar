@@ -63,7 +63,7 @@ def main(argv=sys.argv[1:]):
         env = jinja2.Environment(
             #loader=PackageLoader('yourapplication', 'templates'),
             loader=jinja2.FileSystemLoader([TEMPLATE_DIR]),
-            autoescape=jinja2.select_autoescape(['html', 'xml'])
+            autoescape=jinja2.select_autoescape(['html', 'xml', '.html.j2',])
         )
         template = env.get_template('index.html.j2')
         print(f'Writing index to {args.index}', file=sys.stderr)
