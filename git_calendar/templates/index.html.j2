@@ -35,11 +35,11 @@
 	{% for c in calendars if not c.base == 'example'%}
 
         <li>
-	  <a href="{{ c.fics }}">{{ c.data.name or c.fics }}</a>
+	  <a href="{{ c.furl }}">{{ c.data.name or c.fics }}</a>
 	  {%- if c.data.description %}: {{c.data.description}} {% endif %}
 	  {% if timezones -%}
 	  (view in {% for tz in timezones -%}
-	  <a href="{{c.fics}}.{{tz.tzslug}}.txt">{{tz.tz}}</a>{%if not loop.last%}, {% endif %}
+	  <a href="{{c.furl}}.{{tz.tzslug}}.txt">{{tz.tz}}</a>{%if not loop.last%}, {% endif %}
 	  {%- endfor -%}
 	  )
 	  {%- endif %}

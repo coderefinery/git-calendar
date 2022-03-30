@@ -21,6 +21,9 @@ def main(argv=sys.argv[1:]):
     parser.add_argument('--index', '-i', help="output index file", type=str)
     parser.add_argument('--timezone', action='append', help="zoneinfo timezone names", type=str, default=[])
     parser.add_argument('--edit-link', help='Link to edit, will be added to the generated page.')
+    parser.add_argument('--base-url', help='Base url to append in front of all .ics files '
+                        '(include trailing slash).',
+                        default='')
     args = parser.parse_args(argv)
 
     calendars = [ ]
@@ -41,6 +44,7 @@ def main(argv=sys.argv[1:]):
         calendar['data'] = yaml.safe_load(open(f))
         calendar['fbase'] = fbase = os.path.splitext(os.path.basename(f))[0]
         calendar['fics'] = fics = fbase + '.ics'
+        calendar['furl'] = args.base_url + fics
         calendars.append(calendar)
         output = join(args.output, fics)
 
