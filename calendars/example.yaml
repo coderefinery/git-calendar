@@ -1,6 +1,8 @@
 name: Test calendar
 timezone: Europe/Helsinki
 description: Example of different types of events
+links:
+  - [https://example.com, Name of link]
 
 events:
   # Allowed keywords straight from Event.__init__ keyword arguments:

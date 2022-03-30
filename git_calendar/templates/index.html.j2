@@ -42,7 +42,11 @@
 	  <a href="{{c.fics}}.{{tz.tzslug}}.txt">{{tz.tz}}</a>{%if not loop.last%}, {% endif %}
 	  {%- endfor -%}
 	  )
-	  {%- endif%}
+	  {%- endif %}
+	  {% if c.data.links -%}
+	  ( {%- for href, text in c.data.links %}<a href="{{href}}">{{text}}</a>{% endfor %}{%if not loop.last%}, {% endif -%}
+	  )
+	  {%- endif %}
         </li>
 	{%- endfor %}
 
