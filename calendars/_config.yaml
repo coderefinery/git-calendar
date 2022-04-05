@@ -1,5 +1,6 @@
 title: git-calendar sample calendars
 description: |
   This is a description of the calendars.  It can be edited in
-  calendars/_config.yaml <b>text</b>
+  calendars/_config.yaml <b>HTML bold</b>.  *Markdown italic.*
 
+  Second paragraph.

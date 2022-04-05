@@ -23,7 +23,7 @@
 
       {% if config.description %}
       <p>
-	{{ config.description|safe }}
+	{{ config.description|markdown|safe }}
       </p>
       {% endif %}
 

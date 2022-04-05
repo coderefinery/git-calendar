@@ -7,6 +7,7 @@ import subprocess
 import sys
 import time
 
+import markdown_it
 import jinja2
 import yaml
 
@@ -67,8 +68,9 @@ def main(argv=sys.argv[1:]):
         env = jinja2.Environment(
             #loader=PackageLoader('yourapplication', 'templates'),
             loader=jinja2.FileSystemLoader([TEMPLATE_DIR]),
-            autoescape=jinja2.select_autoescape(['html', 'xml', '.html.j2',])
+            autoescape=jinja2.select_autoescape(['html', 'xml', '.html.j2',]),
         )
+        env.filters['markdown'] = markdown_it.MarkdownIt().render
         template = env.get_template('index.html.j2')
         print(f'Writing index to {args.index}', file=sys.stderr)
         index = template.render(
