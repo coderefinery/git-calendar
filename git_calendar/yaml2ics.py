@@ -1,3 +1,8 @@
+# Vendored from https://github.com/scientific-python/yaml2ics/
+# License: BSD 3-Clause License
+# Authors: see yaml2ics
+
+
 """
 yaml2ics
 ========
