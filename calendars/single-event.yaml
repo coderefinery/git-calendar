@@ -1,0 +1,16 @@
+name: Single event in a calendar
+timezone: Europe/Helsinki
+description: Single event in a calendar
+index-ignore: True
+
+events:
+  # Allowed keywords straight from Event.__init__ keyword arguments:
+  # https://icspy.readthedocs.io/en/stable/api.html#event
+  - summary: Sample one-time event 123ABC
+    description: |
+      Line 1
+      Line 2
+    location: https://meet.jit.si/example
+    begin: 2022-05-05 12:00:00   # warning: full seconds needed
+    duration: { minutes: 60 }
+    # end: 2021-09-30 13:00:00   # duration OR end

@@ -46,7 +46,8 @@ def main(argv=sys.argv[1:]):
         calendar['fbase'] = fbase = os.path.splitext(os.path.basename(f))[0]
         calendar['fics'] = fics = fbase + '.ics'
         calendar['furl'] = args.base_url + fics
-        calendars.append(calendar)
+        if not calendar['data'].get('index-ignore', False):
+            calendars.append(calendar)
         output = join(args.output, fics)
 
         calendar = yaml2ics.files_to_calendar([f])
