@@ -18,14 +18,16 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Info
+        env:  # security, prevent injections
+          github_ref: ${{ github.ref }}
         run: |
-          echo ${{ github.ref }}
+          echo "${github_ref}"
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
       - name: build
         run: |
-          ./build.sh --edit-link=https://github.com/$GITHUB_REPOSITORY
+          ./build.sh "--edit-link=https://github.com/$GITHUB_REPOSITORY"
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == env.DEFAULT_BRANCH }}
