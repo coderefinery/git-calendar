@@ -19,7 +19,8 @@ def main(argv=sys.argv[1:]):
     parser = argparse.ArgumentParser()
     parser.add_argument('inputs', nargs='+', help="input files", type=Path)
     parser.add_argument('--output', '-o', help="output directory", type=str)
-    parser.add_argument('--index', '-i', help="output index file", type=str)
+    parser.add_argument('--index', '-i', help="output HTML index file", type=str)
+    parser.add_argument('--html-body', '-b', help="output HTML body to be included in other pages", type=str)
     parser.add_argument('--timezone', action='append', help="zoneinfo timezone names", type=str, default=[])
     parser.add_argument('--edit-link', help='Link to edit, will be added to the generated page.')
     parser.add_argument('--base-url', help='Base url to append in front of all .ics files '
@@ -61,18 +62,18 @@ def main(argv=sys.argv[1:]):
                 fr"TZ={tzdata['tz']} mutt-ics out/{fics}  | sed 's/^Subject:/\n\n----------\nSubject:/' > out/{fics}.{tzdata['tzslug']}.txt",
                 shell=True)
 
-    if args.index:
+    if args.index or args.html_body:
         timestamp = subprocess.check_output('date', encoding='utf8').strip() # subprocess to get timezone
         git_hash = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], encoding='utf8').strip()
 
-
         env = jinja2.Environment(
-            #loader=PackageLoader('yourapplication', 'templates'),
             loader=jinja2.FileSystemLoader([TEMPLATE_DIR]),
-            autoescape=jinja2.select_autoescape(['html', 'xml', '.html.j2',]),
+            autoescape=jinja2.select_autoescape(['html', 'xml', '.j2.html',]),
         )
         env.filters['markdown'] = markdown_it.MarkdownIt().render
-        template = env.get_template('index.html.j2')
+
+    if args.index:
+        template = env.get_template('index.j2.html')
         print(f'Writing index to {args.index}', file=sys.stderr)
         index = template.render(
             calendars=calendars,
@@ -85,6 +86,19 @@ def main(argv=sys.argv[1:]):
         shutil.copy(TEMPLATE_DIR/'style.css', Path(args.index).parent/'style.css')
         open(args.index, 'w').write(index)
 
+    if args.html_body:
+        template = env.get_template('body.j2.html')
+        print(f'Writing HTML to {args.html_body}', file=sys.stderr)
+        with open(args.html_body, 'w') as f:
+            html = template.render(
+                calendars=calendars,
+                timezones=timezones,
+                timestamp=timestamp,
+                git_hash=git_hash,
+                edit_link=args.edit_link,
+                config=config,
+                )
+            f.write(html)
 
 
 if __name__ == "__main__":
