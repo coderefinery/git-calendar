@@ -69,10 +69,10 @@ def main(argv=sys.argv[1:]):
         env = jinja2.Environment(
             #loader=PackageLoader('yourapplication', 'templates'),
             loader=jinja2.FileSystemLoader([TEMPLATE_DIR]),
-            autoescape=jinja2.select_autoescape(['html', 'xml', '.html.j2',]),
+            autoescape=jinja2.select_autoescape(['html', 'xml', '.j2.html',]),
         )
         env.filters['markdown'] = markdown_it.MarkdownIt().render
-        template = env.get_template('index.html.j2')
+        template = env.get_template('index.j2.html')
         print(f'Writing index to {args.index}', file=sys.stderr)
         index = template.render(
             calendars=calendars,
