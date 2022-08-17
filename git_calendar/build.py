@@ -62,7 +62,7 @@ def main(argv=sys.argv[1:]):
                 fr"TZ={tzdata['tz']} mutt-ics out/{fics}  | sed 's/^Subject:/\n\n----------\nSubject:/' > out/{fics}.{tzdata['tzslug']}.txt",
                 shell=True)
 
-    if args.index:
+    if args.index or args.html_body:
         timestamp = subprocess.check_output('date', encoding='utf8').strip() # subprocess to get timezone
         git_hash = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], encoding='utf8').strip()
 
@@ -71,6 +71,8 @@ def main(argv=sys.argv[1:]):
             autoescape=jinja2.select_autoescape(['html', 'xml', '.j2.html',]),
         )
         env.filters['markdown'] = markdown_it.MarkdownIt().render
+
+    if args.index:
         template = env.get_template('index.j2.html')
         print(f'Writing index to {args.index}', file=sys.stderr)
         index = template.render(
@@ -85,14 +87,6 @@ def main(argv=sys.argv[1:]):
         open(args.index, 'w').write(index)
 
     if args.html_body:
-        timestamp = subprocess.check_output('date', encoding='utf8').strip() # subprocess to get timezone
-        git_hash = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], encoding='utf8').strip()
-
-        env = jinja2.Environment(
-            loader=jinja2.FileSystemLoader([TEMPLATE_DIR]),
-            autoescape=jinja2.select_autoescape(['html', 'xml', '.j2.html',]),
-        )
-        env.filters['markdown'] = markdown_it.MarkdownIt().render
         template = env.get_template('body.j2.html')
         print(f'Writing HTML to {args.html_body}', file=sys.stderr)
         with open(args.html_body, 'w') as f:
