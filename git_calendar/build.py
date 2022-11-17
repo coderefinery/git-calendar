@@ -7,8 +7,9 @@ import subprocess
 import sys
 import time
 
-import markdown_it
+from dateutil.tz import gettz
 import jinja2
+import markdown_it
 import yaml
 
 import yaml2ics
@@ -56,11 +57,21 @@ def main(argv=sys.argv[1:]):
 
         # Generate the rendered views in different timezones
         for tzdata in timezones:
+            # text file dump:, may be useful for some people.
             # This is clearly a hack, calling the shell commands.  This should
             # be improved later.
             subprocess.check_output(
                 fr"TZ={tzdata['tz']} mutt-ics out/{fics}  | sed 's/^Subject:/\n\n----------\nSubject:/' > out/{fics}.{tzdata['tzslug']}.txt",
                 shell=True)
+            # Convert to an .ics file in different timezones.  This shouldn't
+            # be needed, but it seems that Thunderbird doesn't convert
+            # timezones so this is useful for it.
+            calendarTZ = calendar.clone()
+            calendarTZ.normalize(gettz(tzdata['tz']))
+            open(join(args.output, fbase+'.'+tzdata['tzslug']+'.ics'), 'w').write(calendarTZ.serialize())
+
+
+
 
     if args.index or args.html_body:
         timestamp = subprocess.check_output('date', encoding='utf8').strip() # subprocess to get timezone

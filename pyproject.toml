@@ -12,6 +12,7 @@ dynamic = ["version", "description"]
 dependencies = [
     #"yaml2ics",
     "yaml2ics @ https://github.com/scientific-python/yaml2ics/archive/refs/heads/main.zip",
+    "python-dateutil",
     "jinja2",
     "mutt-ics",
     "pyyaml",
