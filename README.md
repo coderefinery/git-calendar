@@ -3,32 +3,45 @@
 This repository turns yaml files into icl calendars (importable into
 different programs) using
 [yaml2ics](https://github.com/scientific-python/yaml2ics) and GitHub
-actions.  Most of the logic is in yaml2ics, this repository provides
-the action to build + publish to Github Pages.
+actions.
+
+This repository provides a working template for the action to build +
+publish to Github Pages, and some minimal HTML index pages.  All of
+the important logic is in
+[yaml2ics](https://github.com/scientific-python/yaml2ics), so if you
+want to roll your own site and build system (which isn't hard) for the
+.ics files, consider using yaml2ics directly.
+
+This is sort of alpha: it works and is used, but code editing or
+asking for clarifications is probably needed.  Documentation should be
+improved.
+
 
 ## Usage
 
-In short,
+To use, look at
+[git-calendar-template](https://github.com/coderefinery/git-calendar-template)
+for a sample repository that uses this.  Generate your own repository
+from that template and go from there.
 
-- `calendars/*.yaml` contains the calendars.
-- Install requirements in `yaml2ics/requirements.txt` (this is a
-  submodule).
-- They get built to `out/*.ics` via `make`
-- An index `out/index.html` gets build via `make`
-- The Github Actions workflow file pushes to the `gh-pages` branch.  Note: you
-  have to go to settings and toggle pages off and on again the first
-  time to make it live, after that Github Actions will keep it up to
-  date.
+This repository can also be installed as a Python pip package.
 
-For now, see `calendars/example.yaml` for an example.  This
-documentation should be improved.
+Usage in short:
 
-When setting this up, do not fork the upstream repository, because
-then pull requests will end up here.  However, you might not want to
-use the "template repository" feature, since then histories will
-become disconnected, and you can't pull updates send PRs back to us.
-So, manually make a new repository, add this as a remote, pull, then
-push to your new repository as the upstream.
+- `calendars/*.yaml` contains the input calendars.
+- `./build.sh` builds the outputs.  Edit this script as
+  needed, or copy the command to your own build script.
+  - `out/index.html` gets build and serves as a landing page
+  - Calendars get build to `out/*.ics`
+  - The Github Actions workflow file deploys `out/` to the `gh-pages`
+  branch.
+
+- **First time deployment note:** you have to go to settings and
+  toggle pages off and on again the first time to enable Github Pages,
+  after that Github Actions will automatically deploy.
+
+For now, see `calendars/example.yaml` for an example, or any of the
+test calendars in yaml2ics.  This documentation should be improved.
 
 
 
