@@ -17,6 +17,18 @@ asking for clarifications is probably needed.  Documentation should be
 improved.
 
 
+
+## Example
+
+The CodeRefinery calendar
+* [Built calendar site](https://coderefinery.github.io/calendar/)
+  (main landing page for most projects)
+* [Source repository](https://github.com/coderefinery/calendar)
+* Optional: [Calendars inserted into
+  website](https://coderefinery.org/calendars/) ([source](https://github.com/coderefinery/coderefinery.org/blob/main/content/calendars.md))
+
+
+
 ## Usage
 
 To use, look at
