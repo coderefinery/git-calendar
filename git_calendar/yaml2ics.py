@@ -30,7 +30,7 @@ interval_type = {
 }
 
 EVENT_FIELDS = (
-    "name", 
+    "summary", 
     "begin", 
     "end", 
     "duration",
