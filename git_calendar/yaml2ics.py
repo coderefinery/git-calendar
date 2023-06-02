@@ -62,7 +62,7 @@ def event_from_yaml(event_yaml: dict, tz: tzinfo = None) -> ics.Event:
         d[key] = d[key].strip() if isinstance(d[key], str) else d[key]
 
 
-    d = dict((k, d[k]) for k in EVENT_FIELDS)
+    d = {k: d[k] for k in d.keys() & EVENT_FIELDS}
 
     # See https://icspy.readthedocs.io/en/stable/api.html#event
     #
