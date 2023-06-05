@@ -12,7 +12,7 @@ import jinja2
 import markdown_it
 import yaml
 
-import yaml2ics
+from . import yaml2ics
 
 TEMPLATE_DIR = Path(__file__).parent/'templates'
 

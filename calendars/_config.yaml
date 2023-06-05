@@ -4,3 +4,5 @@ description: |
   calendars/_config.yaml <b>HTML bold</b>.  *Markdown italic.*
 
   Second paragraph.
+event_url: wooasd
+magic: abrakadabra

@@ -29,6 +29,27 @@ interval_type = {
     "years": dateutil.rrule.YEARLY,
 }
 
+EVENT_FIELDS = (
+    "summary", 
+    "begin", 
+    "end", 
+    "duration",
+    "uid", 
+    "description", 
+    "created", 
+    "last_modified",
+    "location", 
+    "url", 
+    "transparent", 
+    "alarms", 
+    "attendees", 
+    "categories", 
+    "status",
+    "organizer",
+    "geo", 
+    "classification"
+)
+
 
 def event_from_yaml(event_yaml: dict, tz: tzinfo = None) -> ics.Event:
     d = event_yaml
@@ -39,6 +60,9 @@ def event_from_yaml(event_yaml: dict, tz: tzinfo = None) -> ics.Event:
     # Strip all string values, since they often end on `\n`
     for key in d:
         d[key] = d[key].strip() if isinstance(d[key], str) else d[key]
+
+
+    d = {k: d[k] for k in d.keys() & EVENT_FIELDS}
 
     # See https://icspy.readthedocs.io/en/stable/api.html#event
     #
