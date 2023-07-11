@@ -1,0 +1,10 @@
+
+
+----------
+Subject:  Sample one-time event 123ABC
+Start:    Thursday, 05 May 2022, 12:00 EEST
+Location: https://meet.jit.si/example
+Description:
+
+Line 1
+Line 2

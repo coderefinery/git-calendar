@@ -1,0 +1,42 @@
+
+
+----------
+Subject:  One-time event
+Start:    Thursday, 30 September 2021, 12:00 EEST
+Location: https://meet.jit.si/example
+Description:
+
+Line 1
+Line 2
+
+
+----------
+Subject:  Recurring event
+Start:    Wednesday, 02 February 2022, 12:00 EET
+Location: https://meet.jit.si/example
+Description:
+
+Line 1
+Line 2
+
+
+----------
+Subject: All-day event
+Start:   Tuesday, 01 March 2022, 00:00 
+End:     Wednesday, 02 March 2022, 00:00 
+
+
+----------
+Subject: Multi-day event
+Start:   Monday, 28 February 2022, 00:00 EET
+End:     Saturday, 05 March 2022, 00:00 EET
+
+
+----------
+Subject: Template event
+Start:   Tuesday, 01 March 2022, 15:00 EET
+
+
+----------
+Subject: Template event
+Start:   Tuesday, 08 March 2022, 15:00 EET
