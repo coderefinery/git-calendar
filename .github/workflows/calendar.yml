@@ -22,8 +22,10 @@ jobs:
           github_ref: ${{ github.ref }}
         run: |
           echo "${github_ref}"
+          python -V
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install -r requirements.txt
       - name: build
         run: |
