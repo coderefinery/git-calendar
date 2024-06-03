@@ -49,3 +49,14 @@ events:
   # fields: in this case, the 'begin'.
   - <<: *ref-name
     begin: 2022-03-08 15:00:00
+
+  # Recurring event with an exception.
+  # Full date *and time* is needed
+  - summary: Recurring event with exception
+    begin: 2024-06-06 12:00:00
+    duration: { hours: 4 }
+    repeat:
+      interval: {days: 1}
+      until: 2024-06-08 12:00:00
+      except_on:
+        - 2024-06-02 12:00:00
