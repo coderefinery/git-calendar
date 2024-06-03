@@ -80,25 +80,23 @@ def event_from_yaml(event_yaml: dict, tz: tzinfo = None) -> ics.Event:
         interval = repeat["interval"]
 
         if not len(interval) == 1:
-            print(
-                "Error: interval must specify seconds, minutes, hours, days, weeks, months, or years only",
-                file=sys.stderr,
+            raise RuntimeError(
+                "Error: interval must specify seconds, minutes, hours, days, "
+                "weeks, months, or years only"
             )
-            sys.exit(-1)
 
         interval_measure = list(interval.keys())[0]
         if interval_measure not in interval_type:
-            print(
-                "Error: expected interval to be specified in seconds, minutes, hours, days, weeks, months, or years only",
-                file=sys.stderr,
+            raise RuntimeError(
+                "Error: expected interval to be specified in seconds, minutes, "
+                "hours, days, weeks, months, or years only",
             )
-            sys.exit(-1)
 
         if "until" not in repeat:
-            print("Error: must specify end date for repeating events", file=sys.stderr)
-            sys.exit(-1)
+            raise RuntimeError("Error: must specify end date for " "repeating events")
 
-        # This causes zero-length events, I guess overriding whatever duration might have been specified.
+        # This causes zero-length events, I guess overriding whatever duration
+        # might have been specified
         # event.end = d.get('end', None)
 
         rrule = dateutil.rrule.rrule(
@@ -141,7 +139,7 @@ def files_to_events(files: list) -> (ics.Calendar, str):
         if hasattr(f, "read"):
             calendar_yaml = yaml.load(f.read(), Loader=yaml.FullLoader)
         else:
-            calendar_yaml = yaml.load(open(f, "r"), Loader=yaml.FullLoader)
+            calendar_yaml = yaml.load(open(f), Loader=yaml.FullLoader)
         tz = calendar_yaml.get("timezone", None)
         if tz is not None:
             tz = gettz(tz)
@@ -172,21 +170,30 @@ def files_to_calendar(files: list) -> ics.Calendar:
     return calendar
 
 
+# `main` is separate from `cli` to facilitate testing.
+# The only difference being that `main` raises errors while
+# `cli` prints them and exits with errorcode 1
 def main():
     if len(sys.argv) < 2:
-        print("Usage: yaml2ics.py FILE1.yaml FILE2.yaml ...")
-        sys.exit(-1)
+        raise RuntimeError("Usage: yaml2ics.py FILE1.yaml FILE2.yaml ...")
 
     files = sys.argv[1:]
     for f in files:
         if not os.path.isfile(f):
-            print(f"Error: {f} is not a file", file=sys.stderr)
-            sys.exit(-1)
+            raise RuntimeError(f"Error: {f} is not a file")
 
     calendar = files_to_calendar(files)
 
     print(calendar.serialize())
 
 
-if __name__ == "__main__":
-    main()
+def cli():
+    try:
+        main()
+    except Exception as e:
+        print(e, file=sys.stderr)
+        sys.exit(-1)
+
+
+if __name__ == "__main__":  # pragma: no cover
+    cli()
