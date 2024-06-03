@@ -12,6 +12,7 @@ CLI to convert yaml into ics.
 import datetime
 import os
 import sys
+import urllib.request
 
 import dateutil
 import dateutil.rrule
@@ -182,23 +183,30 @@ def events_to_calendar(events: list) -> str:
     return cal
 
 
-def files_to_events(files: list) -> (ics.Calendar, str):
+def files_to_events(files: list, dirname:str='') -> (ics.Calendar, str):
     """Process files to a list of events"""
     all_events = []
     name = None
 
     for f in files:
+        # If it is a raw ICS file
+        if isinstance(f, str) and f.endswith('.ics'):
+            calendar = ics.Calendar(urllib.request.urlopen(f).read().decode())
+            all_events.extend(calendar.events)
+            continue
+
+        # If it is a YAML file:
         if hasattr(f, "read"):
             calendar_yaml = yaml.load(f.read(), Loader=yaml.FullLoader)
         else:
-            calendar_yaml = yaml.load(open(f), Loader=yaml.FullLoader)
+            calendar_yaml = yaml.load(open(os.path.join(dirname, f)), Loader=yaml.FullLoader)
         tz = calendar_yaml.get("timezone", None)
         if tz is not None:
             tz = gettz(tz)
         if "include" in calendar_yaml:
             included_events, _name = files_to_events(
-                os.path.join(os.path.dirname(f), newfile)
-                for newfile in calendar_yaml["include"]
+                (newfile for newfile in calendar_yaml["include"]),
+                dirname=os.path.join(os.path.dirname(f))
             )
             all_events.extend(included_events)
         for event in calendar_yaml.get("events", []):
