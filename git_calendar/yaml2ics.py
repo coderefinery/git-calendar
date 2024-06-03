@@ -9,9 +9,9 @@ yaml2ics
 
 CLI to convert yaml into ics.
 """
+import datetime
 import os
 import sys
-from datetime import datetime, tzinfo
 
 import dateutil
 import dateutil.rrule
@@ -50,11 +50,42 @@ EVENT_FIELDS = (
     "classification"
 )
 
+def datetime2utc(date):
+    if isinstance(date, datetime.datetime):
+        return datetime.datetime.strftime(date, "%Y%m%dT%H%M%S")
+    elif isinstance(date, datetime.date):
+        return datetime.datetime.strftime(date, "%Y%m%d")
 
-def event_from_yaml(event_yaml: dict, tz: tzinfo = None) -> ics.Event:
+
+def utcnow():
+    try:
+        return datetime.datetime.now(datetime.UTC).replace(tzinfo=dateutil.tz.UTC)
+    except AttributeError:
+        # TODO: This section can be removed once Python 3.11 is the minimum version
+        return datetime.datetime.utcnow().replace(tzinfo=dateutil.tz.UTC)
+
+
+# See RFC2445, 4.8.5 REcurrence Component Properties
+# This function can be used to add a list of e.g. exception dates (EXDATE) or
+# recurrence dates (RDATE) to a reoccurring event
+def add_recurrence_property(
+    event: ics.Event, property_name, dates: map, tz: datetime.tzinfo = None
+):
+    event.extra.append(
+        ics.ContentLine(
+            name=property_name,
+            params={"TZID": [str(ics.Timezone.from_tzinfo(tz))]} if tz else None,
+            value=",".join(dates),
+        )
+)
+
+
+def event_from_yaml(event_yaml: dict, tz: datetime.tzinfo = None) -> ics.Event:
     d = event_yaml
     repeat = d.pop("repeat", None)
-    if 'timezone' in d:
+    ics_custom = d.pop("ics", None)
+
+    if "timezone" in d:
         tz = gettz(d.pop("timezone"))
 
     # Strip all string values, since they often end on `\n`
@@ -117,9 +148,30 @@ def event_from_yaml(event_yaml: dict, tz: tzinfo = None) -> ics.Event:
             )
         )
 
-    event.dtstamp = datetime.utcnow().replace(tzinfo=dateutil.tz.UTC)
+        if "except_on" in repeat:
+            exdates = [datetime2utc(rdate) for rdate in repeat["except_on"]]
+            add_recurrence_property(event, "EXDATE", exdates, tz)
+
+        if "also_on" in repeat:
+            rdates = [datetime2utc(rdate) for rdate in repeat["also_on"]]
+            add_recurrence_property(event, "RDATE", rdates, tz)
+
+    event.dtstamp = utcnow()
     if tz and event.floating and not event.all_day:
         event.replace_timezone(tz)
+
+    if ics_custom:
+        for line in ics_custom.split("\n"):
+            if not line:
+                continue
+            if ":" not in line:
+                raise RuntimeError(
+                    f"Invalid custom ICS (expected `fieldname:value`):\n  {line}"
+                )
+
+            ruletype, content = line.split(":", maxsplit=1)
+            event.extra.append(ics.ContentLine(name=ruletype, value=content))
+
     return event
 
 
