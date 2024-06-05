@@ -13,6 +13,9 @@ import datetime
 import os
 import sys
 import urllib.request
+from urllib.parse import unquote
+
+import tempfile
 
 import dateutil
 import dateutil.rrule
@@ -31,25 +34,26 @@ interval_type = {
 }
 
 EVENT_FIELDS = (
-    "summary", 
-    "begin", 
-    "end", 
+    "summary",
+    "begin",
+    "end",
     "duration",
-    "uid", 
-    "description", 
-    "created", 
+    "uid",
+    "description",
+    "created",
     "last_modified",
-    "location", 
-    "url", 
-    "transparent", 
-    "alarms", 
-    "attendees", 
-    "categories", 
+    "location",
+    "url",
+    "transparent",
+    "alarms",
+    "attendees",
+    "categories",
     "status",
     "organizer",
-    "geo", 
-    "classification"
+    "geo",
+    "classification",
 )
+
 
 def datetime2utc(date):
     if isinstance(date, datetime.datetime):
@@ -78,7 +82,7 @@ def add_recurrence_property(
             params={"TZID": [str(ics.Timezone.from_tzinfo(tz))]} if tz else None,
             value=",".join(dates),
         )
-)
+    )
 
 
 def event_from_yaml(event_yaml: dict, tz: datetime.tzinfo = None) -> ics.Event:
@@ -92,7 +96,6 @@ def event_from_yaml(event_yaml: dict, tz: datetime.tzinfo = None) -> ics.Event:
     # Strip all string values, since they often end on `\n`
     for key in d:
         d[key] = d[key].strip() if isinstance(d[key], str) else d[key]
-
 
     d = {k: d[k] for k in d.keys() & EVENT_FIELDS}
 
@@ -183,30 +186,64 @@ def events_to_calendar(events: list) -> str:
     return cal
 
 
-def files_to_events(files: list, dirname:str='') -> (ics.Calendar, str):
+def gather_files(files: list, dirname: str = "") -> list:
+    collected_files = []
+    temporary_files = []
+    for f in files:
+        if isinstance(f, str) and f.startswith("http"):
+            print(f"Downloading {f}", flush=True)
+            # This is an address on the web, so download it.
+            with urllib.request.urlopen(f) as response:
+                headers = response.info()
+
+                if "Content-Disposition" in headers and headers["Content-Disposition"]:
+                    content_disposition = headers["Content-Disposition"]
+                    # The header might look like 'attachment; filename="calendar.ics"'
+                    filename = content_disposition.split("filename=")[1].strip('";')
+                    filename = unquote(filename)  # Decode percent-encoded characters
+                else:
+                    # We will assume, that the Last bit of the URL is the filename
+                    filename = f.split("/")[-1]
+                filetype = filename.split(".")[-1]
+                with tempfile.NamedTemporaryFile(
+                    suffix="." + filetype, dir=dirname, delete=False
+                ) as temp_file:
+                    temp_file.write(response.read())
+                    # we could probably also use the file itself, but I would like to be able to close it properly here.
+                    collected_files.append(os.path.basename(temp_file.name))
+                    temporary_files.append(os.path.basename(temp_file.name))
+        else:
+            print(f"Adding file {f}", flush=True)
+            collected_files.append(f)
+    return collected_files, temporary_files
+
+
+def files_to_events(files: list, dirname: str = "") -> (ics.Calendar, str):
     """Process files to a list of events"""
     all_events = []
     name = None
-
-    for f in files:
+    processed_files, temporary_files = gather_files(files, dirname=dirname)
+    for f in processed_files:
         # If it is a raw ICS file
-        if isinstance(f, str) and f.endswith('.ics'):
-            calendar = ics.Calendar(urllib.request.urlopen(f).read().decode())
+        if isinstance(f, str) and f.endswith(".ics"):
+            calendar = ics.Calendar(open(os.path.join(dirname, f)))
             all_events.extend(calendar.events)
             continue
 
-        # If it is a YAML file:
+        # We assume, that otherwise it's a YAML file:
         if hasattr(f, "read"):
             calendar_yaml = yaml.load(f.read(), Loader=yaml.FullLoader)
         else:
-            calendar_yaml = yaml.load(open(os.path.join(dirname, f)), Loader=yaml.FullLoader)
+            calendar_yaml = yaml.load(
+                open(os.path.join(dirname, f)), Loader=yaml.FullLoader
+            )
         tz = calendar_yaml.get("timezone", None)
         if tz is not None:
             tz = gettz(tz)
         if "include" in calendar_yaml:
             included_events, _name = files_to_events(
                 (newfile for newfile in calendar_yaml["include"]),
-                dirname=os.path.join(os.path.dirname(f))
+                dirname=os.path.join(os.path.dirname(f)),
             )
             all_events.extend(included_events)
         for event in calendar_yaml.get("events", []):
@@ -215,7 +252,9 @@ def files_to_events(files: list, dirname:str='') -> (ics.Calendar, str):
         # We can only provide one calendar name, so we'll
         # keep the last one we find
         name = calendar_yaml.get("name", name)
-
+    # Clean up temporary files
+    for temp_file in temporary_files:
+        os.remove(os.path.join(dirname, temp_file))
     return all_events, name
 
 
