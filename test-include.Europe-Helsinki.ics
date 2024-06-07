@@ -1,0 +1,362 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:ics.py 0.8.0.dev0 - http://git.io/lLljaA
+BEGIN:VTIMEZONE
+TZID:/ics.py/2020.1/Europe/Helsinki
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0300
+DTSTART:19700329T030000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+RDATE:19700329T030000
+TZNAME:EEST
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0300
+TZOFFSETTO:+0200
+DTSTART:19701025T040000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+RDATE:19701025T040000
+TZNAME:EET
+END:STANDARD
+LAST-MODIFIED:20200620T153818Z
+X-LIC-LOCATION:Europe/Helsinki
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20210930T120000
+DURATION:PT1H
+SUMMARY:One-time event
+UID:5378bcc3-f62f-481a-8549-9bcc601fbed6@5378.org
+DESCRIPTION:Line 1\nLine 2
+LOCATION:https://meet.jit.si/example
+DTSTAMP:20240607T085951Z
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20220202T120000
+DURATION:PT4H
+SUMMARY:Recurring event
+UID:779dca5a-806a-4778-a9e7-84f70d5019ea@779d.org
+DESCRIPTION:Line 1\nLine 2
+LOCATION:https://meet.jit.si/example
+DTSTAMP:20240607T085951Z
+RRULE:FREQ=DAILY;UNTIL=20220204T120000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20220301
+DTEND;VALUE=DATE:20220302
+SUMMARY:All-day event
+UID:963a0ffe-e117-44f4-aad8-52271591367c@963a.org
+DTSTAMP:20240607T085951Z
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20220228T000000
+DTEND;TZID=/ics.py/2020.1/Europe/Helsinki:20220305T000000
+SUMMARY:Multi-day event
+UID:f94b28e5-4fca-46c1-97c6-1cfccfdfe619@f94b.org
+DTSTAMP:20240607T085951Z
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20220301T150000
+DURATION:PT1H
+SUMMARY:Template event
+UID:3772966a-0d00-4082-a9c9-55016b74b574@3772.org
+DTSTAMP:20240607T085951Z
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20220308T150000
+DURATION:PT1H
+SUMMARY:Template event
+UID:0914aa58-7069-4843-94d8-77629d03f161@0914.org
+DTSTAMP:20240607T085951Z
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20240606T120000
+DURATION:PT4H
+SUMMARY:Recurring event with exception
+UID:ab92991e-1a3f-49f4-a7f8-15ca717501b4@ab92.org
+DTSTAMP:20240607T085951Z
+RRULE:FREQ=DAILY;UNTIL=20240608T120000
+EXDATE;TZID=/ics.py/2020.1/Europe/Helsinki:20240602T120000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20220202T130000
+DURATION:PT4H
+SUMMARY:Getting started with scientific computing/HPC
+UID:8f6840ce-86e1-4f99-bb2f-5026cb747ba9@8f68.org
+DESCRIPTION:This event introduces you to scientific computing and 
+ using\ncomputer clusters.  The first day is suitable for everyone\, 
+ days\n2-3 are suitable for those who want to learn to use a 
+ computer\ncluster.\n\nday 1: 
+ https://scicomp.aalto.fi/training/scip/getting-started-with-scientific-
+ computing/\nday 2: https://scicomp.aalto.fi/training/scip/winter-
+ kickstart/
+LOCATION:https://twitch.tv/coderefinery
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20220204T130000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20220322T095000
+DURATION:PT3H40M
+SUMMARY:CodeRefinery workshop\, March 2022
+UID:eeb706e2-fc9d-428a-9d0f-1bfe8787f7d5@eeb7.org
+LOCATION:https://coderefinery.github.io/2022-03-22-workshop/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20220324T123000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20220329T095000
+DURATION:PT3H40M
+SUMMARY:CodeRefinery workshop\, March 2022
+UID:80ee0372-c225-4980-bbba-323ecb5be4c6@80ee.org
+LOCATION:https://coderefinery.github.io/2022-03-22-workshop/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20220331T090000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20220920T095000
+DURATION:PT3H40M
+SUMMARY:CodeRefinery workshop\, September 2022
+UID:20fcd5b3-ba39-4df7-a337-5992a7b17c6f@20fc.org
+LOCATION:https://coderefinery.github.io/2022-09-20-workshop/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20220922T123000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20220927T095000
+DURATION:PT3H40M
+SUMMARY:CodeRefinery workshop\, September 2022
+UID:af547a8a-cd22-43df-bff1-7f4048743b5d@af54.org
+LOCATION:https://coderefinery.github.io/2022-09-20-workshop/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20220929T123000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20230321T095000
+DURATION:PT3H40M
+SUMMARY:CodeRefinery workshop\, March 2023
+UID:571a1852-5414-42c2-9be7-9e9ef68231ec@571a.org
+LOCATION:https://coderefinery.org/workshops/upcoming/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20230323T123000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20230328T095000
+DURATION:PT3H40M
+SUMMARY:CodeRefinery workshop\, March 2023
+UID:921e3cdb-b84e-472c-becf-88df1c26a5e9@921e.org
+LOCATION:https://coderefinery.org/workshops/upcoming/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20230330T123000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20230912T123000
+DURATION:PT4H30M
+SUMMARY:CodeRefinery workshop\, September 2023
+UID:ba19657c-e704-4f69-8afb-287cbe60912d@ba19.org
+LOCATION:https://coderefinery.github.io/2023-09-19-workshop/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20230913T160000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20230919T100000
+DURATION:PT4H30M
+SUMMARY:CodeRefinery workshop\, September 2023
+UID:a431f98c-8925-4132-b1df-90f562155966@a431.org
+LOCATION:https://coderefinery.github.io/2023-09-19-workshop/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20230921T133000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20231002T160000
+DURATION:PT1H30M
+SUMMARY:Bring your own code session - CodeRefinery workshop\, September 
+ 2023
+UID:ddb7413b-9719-4567-a041-386ec4a85373@ddb7.org
+LOCATION:https://coderefinery.github.io/2023-09-19-workshop/
+DTSTAMP:20240603T220309Z
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20231009T160000
+DURATION:PT1H30M
+SUMMARY:Bring your own code session - CodeRefinery workshop\, September 
+ 2023
+UID:5932774f-a85e-40fe-8518-cd3c118311de@5932.org
+LOCATION:https://coderefinery.github.io/2023-09-19-workshop/
+DTSTAMP:20240603T220309Z
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20240312T100000
+DURATION:PT4H30M
+SUMMARY:CodeRefinery workshop\, March 2024
+UID:d8076994-8877-4618-816a-a2288371f5db@d807.org
+LOCATION:https://coderefinery.github.io/2024-03-12-workshop/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20240314T133000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20240319T100000
+DURATION:PT4H30M
+SUMMARY:CodeRefinery workshop\, March 2024
+UID:35feddcc-effa-4302-ac0b-8359b12789e6@35fe.org
+LOCATION:https://coderefinery.github.io/2024-03-12-workshop/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20240321T140000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20240326T140000
+DURATION:PT2H
+SUMMARY:Bring your own code session - CodeRefinery workshop\, March 2024
+UID:d05d5c05-f4de-4b1d-82e7-c81faf2377f5@d05d.org
+LOCATION:https://coderefinery.github.io/2024-03-12-workshop/
+DTSTAMP:20240603T220309Z
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20240402T140000
+DURATION:PT2H
+SUMMARY:Bring your own code session - CodeRefinery workshop\, March 2024
+UID:4c9705d6-06a2-4174-bb98-f9b2a54d05c2@4c97.org
+LOCATION:https://coderefinery.github.io/2024-03-12-workshop/
+DTSTAMP:20240603T220309Z
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20241008T095000
+DURATION:PT3H10M
+SUMMARY:Build Systems Hackathon\, October 2024
+UID:2d217f2b-f10f-4ede-8fc8-b44049bebec3@2d21.org
+LOCATION:https://coderefinery.org/workshops/upcoming/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20241010T120000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20241015T100000
+DURATION:PT7H
+SUMMARY:Build Systems Hackathon\, October 2024
+UID:4fa8c422-8790-4294-8859-a0a9813800e7@4fa8.org
+LOCATION:https://coderefinery.org/workshops/upcoming/
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20241017T160000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20240910T100000
+DURATION:PT4H30M
+SUMMARY:CodeRefinery workshop\, September 2024
+UID:b432dd80-087c-44aa-a735-9426921472ac@b432.org
+LOCATION:TBD
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20240912T133000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20240917T100000
+DURATION:PT4H30M
+SUMMARY:CodeRefinery workshop\, September 2024
+UID:e33d9365-76c7-4be8-b7fc-e23c84672f09@e33d.org
+LOCATION:TBD
+DTSTAMP:20240603T220309Z
+RRULE:FREQ=DAILY;UNTIL=20240919T140000
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20240625T100000
+DTEND;TZID=/ics.py/2020.1/Europe/Helsinki:20240626T133000
+SUMMARY:AI for Science Bootcamp
+UID:10000632-1719306000-1719405000@enccs.se
+DESCRIPTION:Register\n\n\n\n\n\n\nSummary\n\n\n\nHow can one use AI and 
+ especially deep learning in differential equations in order to train 
+ modells of physical systems? \n\n\n\nThe AI for Science Bootcamp provides 
+ a step-by-step overview of the fundamentals of deep neural networks and 
+ walks attendees through the hands-on experience of building and improving 
+ deep learning models for applications related to scientific computing and 
+ physical systems defined by differential equations.  \n\n\n\nThe material 
+ will cover more advanced topics\, such as physics-informed neural networks
+  (PINNs) and operator learning and make use of tools like NVIDIA Modulus 
+ to develop and train the models. Furthermore\, this online bootcamp is a 
+ hands-on learning experience where we will guide you through step-by-step 
+ instructions with teaching assistants on hand to help throughout. 
+ \n\n\n\nPrerequisites\n\n\n\n\nBasic experience with Python and 
+ PyTorch. \n\n\n\nWe recommend basic knowledge of neural 
+ networks.\n\n\n\nNo GPU programming experience is 
+ required\n\n\n\n\nDisclaimer\n\n\n\nDue to EuroCC2 regulations\, we cannot
+  except generic or private email addresses. Please use your official 
+ university or company email address. \n\n\n\nThis training is intended for
+  users established in the European Union or a country associated 
+ with Horizon 2020. You can read more about the countries associated with 
+ Horizon2020 here https://ec.europa.eu/info/research-and-
+ innovation/statistics/framework-programme-facts-and-
+ figures/horizon-2020-country-profiles_e \n\n\n\nComputing 
+ resources\n\n\n\nAttendees will have the opportunity to access a GPU 
+ cluster for the duration of the bootcamp.  \n\n\n\nAgenda\n\n\n\nMonday 24
+  June 2024 \n\n\n\n\n\n\n	Time (CET)Topic\n\n\n\n\n	11:00–12:00Cluster Dry
+  Run Session\n\n\n\n\n\n\nTuesday 25 June 2024 \n\n\n\n\n\n\n	Time 
+ (CET)Topic\n\n\n\n\n	09:00–09:15Welcome\n\n\n	09:15–09:30Connecting to a 
+ cluster\n\n\n	10:00–12:00Physics-Informed approach to an AI for Scientific
+  application (Lecture and Lab)\n• Lab 1: Simulating Projectile Motion\n• 
+ Lab 2: Steady State Diffusion in a Composite Bar using PINNs\n\n\n	
+ 12:00-12:30Wrap up and Q&A\n\n\n	12:30-13:30LLM Projects Discussion 
+ (Optional)\n\n\n\n\n\n\nWednesday 26 June 2024 \n\n\n\n\n\n\n	Time 
+ (CET)Topic\n\n\n\n\n	09:00–10:30Physics-Informed approach to an AI for 
+ Scientific application (Lecture and Lab)\n• Lab 3: Forecasting weather 
+ using Navier-Stokes PDE\n• Lab 4: Spring mass problem - Solving transient 
+ problems and \ninverse problems (Optional)\n\n\n	10:30–12:15Data-driven 
+ approach to an AI for Scientific application. (Lecture and Lab)\n• Lab 1 :
+  Solving the Darcy-Flow problem using FNO\n• Lab 2: Solving the Darcy-Flow
+  problem using AFNO\n• Lab 3: Forecasting weather using FourCastNet\n\n\n	
+ 12:15–12:30Wrap up and Q&A\n\n\n	12:30-13:30LLM Projects Discussion 
+ (Optional)\n\n\n\n\n\n\nOrganisers\n\n\n\nThe organisers of the AI for 
+ Science Bootcamp are ENCCS\, the High-Performance Computing Center 
+ Stuttgart (HLRS)\, Jülich Supercomputing Centre (JSC)\, Leibniz 
+ Supercomputing Centre (LRZ)\, Vienna Scientific Cluster (VSC)\, University
+  of Donja Gorica\, OpenACC organization\, and NVIDIA for EuroCC 
+ Austria\, EuroCC@GCS\, EuroCC Montenegro\, and EuroCC Sweden\, all 
+ National Competence Centres for High-Performance Computing. 
+ \n\n\n\nRegistration\n\n\n\nPlease register using this link 
+ https://www.openhackathons.org/s/siteevent/a0C5e000008AbEaEAK/se000315 
+ Application Deadline:May 14\, 2024
+LOCATION:Online
+URL:https://enccs.se/events/ai-for-science-bootcamp/
+CREATED:20231214T094854Z
+LAST-MODIFIED:20231215T141631Z
+DTSTAMP:20240607T105950Z
+ATTACH;FMTTYPE=image/jpeg:https://media.enccs.se/2023/12/AI-for-science.jpg
+CATEGORIES:Collaboration Event,ENCCS Event
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=/ics.py/2020.1/Europe/Helsinki:20240902T130000
+DTEND;TZID=/ics.py/2020.1/Europe/Helsinki:20240903T173000
+SUMMARY:Nordic Industry Days (in-person event)
+UID:10000642-1725278400-1725381000@enccs.se
+DESCRIPTION:📍 Dansk Industri\, H.C. Andersens Boulevard 18\, 1553 
+ Copenhagen\n\n\n\n\nRegister now\n\n\n\n\n\n\nJoin us at the Nordic 
+ Industry Days 2024 in the heart of Copenhagen to discuss the latest 
+ developments in Supercomputing\, AI\, and Quantum Computing and how they 
+ can boost your business model. \n\n\n\n\nHow can small businesses get 
+ access to supercomputers for free?\n\n\n\nIs supercomputing crucial to AI 
+ development?\n\n\n\nHow can businesses use supercomputers to improve their
+  services or products?\n\n\n\n\nSave costs\, become competitive\, and 
+ improve efficiency by harvesting the power of supercomputers in your daily
+  routines. \n\n\n\nWho are Nordic Industry Days for?\n\n\n\nAre you a 
+ professional or a leader in the industry\, high-tech startup\, and SME 
+ interested in learning about new trends\, use cases\, and innovation 
+ within the supercomputing and AI world? Then this event is for you! 
+ \n\n\n\nNordic Supercomputing Industry Days bring together speakers and 
+ companies from Denmark\, Norway\, Sweden\, and Finland to share their 
+ experiences with supercomputers in their everyday workflows. Take part in 
+ the discussions and network with innovators during this 2-day event.  
+ \n\n\n\nInterested in learning more about our collaboration with industry?
+  Check here. \n\n\n\nRegistration\n\n\n\nPlease register by visiting 
+ https://events.prace-ri.eu/event/1566/registrations/1130/ 
+ \n\n\n\nLocation\n\n\n\nThe event will take place in Copenhagen next to 
+ the charming Tivoli Gardens\, at Dansk Industri\, H.C. Andersens Boulevard
+  18\, 1553 København \n\n\n\nFees: The event is free of charge.However\, 
+ we would like to make it possible for as many interested parties as 
+ possible to take part and not leave any places unused. Therefore\, a no-
+ show fee will be charged if you do not take part without canceling. 
+ \n\n\n\nOrganisers\n\n\n\nThe Nordic Supercomputing Industry Days are 
+ organised by the National HPC Competence Centers in Denmark\, Sweden\, 
+ Norway\, Finland\, and Iceland.
+URL:https://enccs.se/events/nordic-industry-days-2024/
+CREATED:20240430T135200Z
+LAST-MODIFIED:20240603T075254Z
+DTSTAMP:20240607T105950Z
+ATTACH;FMTTYPE=image/jpeg:https://media.enccs.se/2024/04/Nordic-industry-
+ days-image1.jpg
+END:VEVENT
+END:VCALENDAR

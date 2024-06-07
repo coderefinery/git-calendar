@@ -1,0 +1,426 @@
+
+
+----------
+Subject:  One-time event
+Start:    Thursday, 30 September 2021, 11:00 CEST
+Location: https://meet.jit.si/example
+Description:
+
+Line 1
+Line 2
+
+
+----------
+Subject:  Recurring event
+Start:    Wednesday, 02 February 2022, 11:00 CET
+Location: https://meet.jit.si/example
+Description:
+
+Line 1
+Line 2
+
+
+----------
+Subject: All-day event
+Start:   Tuesday, 01 March 2022, 00:00 
+End:     Wednesday, 02 March 2022, 00:00 
+
+
+----------
+Subject: Multi-day event
+Start:   Sunday, 27 February 2022, 23:00 CET
+End:     Friday, 04 March 2022, 23:00 CET
+
+
+----------
+Subject: Template event
+Start:   Tuesday, 01 March 2022, 14:00 CET
+
+
+----------
+Subject: Template event
+Start:   Tuesday, 08 March 2022, 14:00 CET
+
+
+----------
+Subject: Recurring event with exception
+Start:   Thursday, 06 June 2024, 11:00 CEST
+
+
+----------
+Subject:  Getting started with scientific computing/HPC
+Start:    Wednesday, 02 February 2022, 12:00 CET
+Location: https://twitch.tv/coderefinery
+Description:
+
+This event introduces you to scientific computing and using
+computer clusters.  The first day is suitable for everyone, days
+2-3 are suitable for those who want to learn to use a computer
+cluster.
+
+day 1: https://scicomp.aalto.fi/training/scip/getting-started-with-scientific-computing/
+day 2: https://scicomp.aalto.fi/training/scip/winter-kickstart/
+
+
+----------
+Subject:  CodeRefinery workshop, March 2022
+Start:    Tuesday, 22 March 2022, 08:50 CET
+Location: https://coderefinery.github.io/2022-03-22-workshop/
+
+
+----------
+Subject:  CodeRefinery workshop, March 2022
+Start:    Tuesday, 29 March 2022, 08:50 CEST
+Location: https://coderefinery.github.io/2022-03-22-workshop/
+
+
+----------
+Subject:  CodeRefinery workshop, September 2022
+Start:    Tuesday, 20 September 2022, 08:50 CEST
+Location: https://coderefinery.github.io/2022-09-20-workshop/
+
+
+----------
+Subject:  CodeRefinery workshop, September 2022
+Start:    Tuesday, 27 September 2022, 08:50 CEST
+Location: https://coderefinery.github.io/2022-09-20-workshop/
+
+
+----------
+Subject:  CodeRefinery workshop, March 2023
+Start:    Tuesday, 21 March 2023, 08:50 CET
+Location: https://coderefinery.org/workshops/upcoming/
+
+
+----------
+Subject:  CodeRefinery workshop, March 2023
+Start:    Tuesday, 28 March 2023, 08:50 CEST
+Location: https://coderefinery.org/workshops/upcoming/
+
+
+----------
+Subject:  CodeRefinery workshop, September 2023
+Start:    Tuesday, 12 September 2023, 11:30 CEST
+Location: https://coderefinery.github.io/2023-09-19-workshop/
+
+
+----------
+Subject:  CodeRefinery workshop, September 2023
+Start:    Tuesday, 19 September 2023, 09:00 CEST
+Location: https://coderefinery.github.io/2023-09-19-workshop/
+
+
+----------
+Subject:  Bring your own code session - CodeRefinery workshop, September 2023
+Start:    Monday, 02 October 2023, 15:00 CEST
+Location: https://coderefinery.github.io/2023-09-19-workshop/
+
+
+----------
+Subject:  Bring your own code session - CodeRefinery workshop, September 2023
+Start:    Monday, 09 October 2023, 15:00 CEST
+Location: https://coderefinery.github.io/2023-09-19-workshop/
+
+
+----------
+Subject:  CodeRefinery workshop, March 2024
+Start:    Tuesday, 12 March 2024, 09:00 CET
+Location: https://coderefinery.github.io/2024-03-12-workshop/
+
+
+----------
+Subject:  CodeRefinery workshop, March 2024
+Start:    Tuesday, 19 March 2024, 09:00 CET
+Location: https://coderefinery.github.io/2024-03-12-workshop/
+
+
+----------
+Subject:  Bring your own code session - CodeRefinery workshop, March 2024
+Start:    Tuesday, 26 March 2024, 13:00 CET
+Location: https://coderefinery.github.io/2024-03-12-workshop/
+
+
+----------
+Subject:  Bring your own code session - CodeRefinery workshop, March 2024
+Start:    Tuesday, 02 April 2024, 13:00 CEST
+Location: https://coderefinery.github.io/2024-03-12-workshop/
+
+
+----------
+Subject:  Build Systems Hackathon, October 2024
+Start:    Tuesday, 08 October 2024, 08:50 CEST
+Location: https://coderefinery.org/workshops/upcoming/
+
+
+----------
+Subject:  Build Systems Hackathon, October 2024
+Start:    Tuesday, 15 October 2024, 09:00 CEST
+Location: https://coderefinery.org/workshops/upcoming/
+
+
+----------
+Subject:  CodeRefinery workshop, September 2024
+Start:    Tuesday, 10 September 2024, 09:00 CEST
+Location: TBD
+
+
+----------
+Subject:  CodeRefinery workshop, September 2024
+Start:    Tuesday, 17 September 2024, 09:00 CEST
+Location: TBD
+
+
+----------
+Subject:  AI for Science Bootcamp
+Start:    Tuesday, 25 June 2024, 09:00 CEST
+End:      Wednesday, 26 June 2024, 12:30 CEST
+Location: Online
+Description:
+
+Register
+
+
+
+
+
+
+Summary
+
+
+
+How can one use AI and especially deep learning in differential equations in order to train modells of physical systems? 
+
+
+
+The AI for Science Bootcamp provides a step-by-step overview of the fundamentals of deep neural networks and walks attendees through the hands-on experience of building and improving deep learning models for applications related to scientific computing and physical systems defined by differential equations.  
+
+
+
+The material will cover more advanced topics, such as physics-informed neural networks (PINNs) and operator learning and make use of tools like NVIDIA Modulus to develop and train the models. Furthermore, this online bootcamp is a hands-on learning experience where we will guide you through step-by-step instructions with teaching assistants on hand to help throughout. 
+
+
+
+Prerequisites
+
+
+
+
+Basic experience with Python and PyTorch. 
+
+
+
+We recommend basic knowledge of neural networks.
+
+
+
+No GPU programming experience is required
+
+
+
+
+Disclaimer
+
+
+
+Due to EuroCC2 regulations, we cannot except generic or private email addresses. Please use your official university or company email address. 
+
+
+
+This training is intended for users established in the European Union or a country associated with Horizon 2020. You can read more about the countries associated with Horizon2020 here https://ec.europa.eu/info/research-and-innovation/statistics/framework-programme-facts-and-figures/horizon-2020-country-profiles_e 
+
+
+
+Computing resources
+
+
+
+Attendees will have the opportunity to access a GPU cluster for the duration of the bootcamp.  
+
+
+
+Agenda
+
+
+
+Monday 24 June 2024 
+
+
+
+
+
+
+	Time (CET)Topic
+
+
+
+
+	11:00–12:00Cluster Dry Run Session
+
+
+
+
+
+
+Tuesday 25 June 2024 
+
+
+
+
+
+
+	Time (CET)Topic
+
+
+
+
+	09:00–09:15Welcome
+
+
+	09:15–09:30Connecting to a cluster
+
+
+	10:00–12:00Physics-Informed approach to an AI for Scientific application (Lecture and Lab)
+• Lab 1: Simulating Projectile Motion
+• Lab 2: Steady State Diffusion in a Composite Bar using PINNs
+
+
+	12:00-12:30Wrap up and Q&A
+
+
+	12:30-13:30LLM Projects Discussion (Optional)
+
+
+
+
+
+
+Wednesday 26 June 2024 
+
+
+
+
+
+
+	Time (CET)Topic
+
+
+
+
+	09:00–10:30Physics-Informed approach to an AI for Scientific application (Lecture and Lab)
+• Lab 3: Forecasting weather using Navier-Stokes PDE
+• Lab 4: Spring mass problem - Solving transient problems and 
+inverse problems (Optional)
+
+
+	10:30–12:15Data-driven approach to an AI for Scientific application. (Lecture and Lab)
+• Lab 1 : Solving the Darcy-Flow problem using FNO
+• Lab 2: Solving the Darcy-Flow problem using AFNO
+• Lab 3: Forecasting weather using FourCastNet
+
+
+	12:15–12:30Wrap up and Q&A
+
+
+	12:30-13:30LLM Projects Discussion (Optional)
+
+
+
+
+
+
+Organisers
+
+
+
+The organisers of the AI for Science Bootcamp are ENCCS, the High-Performance Computing Center Stuttgart (HLRS), Jülich Supercomputing Centre (JSC), Leibniz Supercomputing Centre (LRZ), Vienna Scientific Cluster (VSC), University of Donja Gorica, OpenACC organization, and NVIDIA for EuroCC Austria, EuroCC@GCS, EuroCC Montenegro, and EuroCC Sweden, all National Competence Centres for High-Performance Computing. 
+
+
+
+Registration
+
+
+
+Please register using this link https://www.openhackathons.org/s/siteevent/a0C5e000008AbEaEAK/se000315 Application Deadline:May 14, 2024
+
+
+----------
+Subject: Nordic Industry Days (in-person event)
+Start:   Monday, 02 September 2024, 12:00 CEST
+End:     Tuesday, 03 September 2024, 16:30 CEST
+Description:
+
+📍 Dansk Industri, H.C. Andersens Boulevard 18, 1553 Copenhagen
+
+
+
+
+Register now
+
+
+
+
+
+
+Join us at the Nordic Industry Days 2024 in the heart of Copenhagen to discuss the latest developments in Supercomputing, AI, and Quantum Computing and how they can boost your business model. 
+
+
+
+
+How can small businesses get access to supercomputers for free?
+
+
+
+Is supercomputing crucial to AI development?
+
+
+
+How can businesses use supercomputers to improve their services or products?
+
+
+
+
+Save costs, become competitive, and improve efficiency by harvesting the power of supercomputers in your daily routines. 
+
+
+
+Who are Nordic Industry Days for?
+
+
+
+Are you a professional or a leader in the industry, high-tech startup, and SME interested in learning about new trends, use cases, and innovation within the supercomputing and AI world? Then this event is for you! 
+
+
+
+Nordic Supercomputing Industry Days bring together speakers and companies from Denmark, Norway, Sweden, and Finland to share their experiences with supercomputers in their everyday workflows. Take part in the discussions and network with innovators during this 2-day event.  
+
+
+
+Interested in learning more about our collaboration with industry? Check here. 
+
+
+
+Registration
+
+
+
+Please register by visiting https://events.prace-ri.eu/event/1566/registrations/1130/ 
+
+
+
+Location
+
+
+
+The event will take place in Copenhagen next to the charming Tivoli Gardens, at Dansk Industri, H.C. Andersens Boulevard 18, 1553 København 
+
+
+
+Fees: The event is free of charge.However, we would like to make it possible for as many interested parties as possible to take part and not leave any places unused. Therefore, a no-show fee will be charged if you do not take part without canceling. 
+
+
+
+Organisers
+
+
+
+The Nordic Supercomputing Industry Days are organised by the National HPC Competence Centers in Denmark, Sweden, Norway, Finland, and Iceland.
