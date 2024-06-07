@@ -223,6 +223,9 @@ def files_to_events(files: list, dirname: str = "") -> (ics.Calendar, str):
     all_events = []
     name = None
     processed_files, temporary_files = gather_files(files, dirname=dirname)
+    print(processed_files)
+    print(files)
+    print(dirname)
     for f in processed_files:
         # If it is a raw ICS file
         if isinstance(f, str) and f.endswith(".ics"):
@@ -243,7 +246,7 @@ def files_to_events(files: list, dirname: str = "") -> (ics.Calendar, str):
         if "include" in calendar_yaml:
             included_events, _name = files_to_events(
                 (newfile for newfile in calendar_yaml["include"]),
-                dirname=os.path.join(os.path.dirname(f)),
+                dirname=os.path.join(dirname, os.path.dirname(f)),
             )
             all_events.extend(included_events)
         for event in calendar_yaml.get("events", []):
