@@ -191,7 +191,7 @@ def gather_files(files: list, dirname: str = "") -> list:
     temporary_files = []
     for f in files:
         if isinstance(f, str) and f.startswith("http"):
-            print(f"Downloading {f}", flush=True)
+            print(f"Downloading {f} -> ...", flush=True)
             # This is an address on the web, so download it.
             with urllib.request.urlopen(f) as response:
                 headers = response.info()
@@ -204,10 +204,11 @@ def gather_files(files: list, dirname: str = "") -> list:
                 else:
                     # We will assume, that the Last bit of the URL is the filename
                     filename = f.split("/")[-1]
-                filetype = filename.split(".")[-1]
+                filename, filetype = os.path.splitext(filename)
                 with tempfile.NamedTemporaryFile(
-                    suffix="." + filetype, dir=dirname, delete=False
+                    prefix='tmp.'+filename, suffix=filetype, dir=dirname, delete=False
                 ) as temp_file:
+                    print(f"... -> {os.path.basename(temp_file.name)}", flush=True)
                     temp_file.write(response.read())
                     # we could probably also use the file itself, but I would like to be able to close it properly here.
                     collected_files.append(os.path.basename(temp_file.name))
@@ -227,6 +228,7 @@ def files_to_events(files: list, dirname: str = "") -> (ics.Calendar, str):
     print(files)
     print(dirname)
     for f in processed_files:
+        print(f"Processing {f}")
         # If it is a raw ICS file
         if isinstance(f, str) and f.endswith(".ics"):
             calendar = ics.Calendar(open(os.path.join(dirname, f)))
