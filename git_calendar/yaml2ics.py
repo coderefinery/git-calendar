@@ -232,6 +232,9 @@ def files_to_events(files: list, dirname: str = "") -> (ics.Calendar, str):
         # If it is a raw ICS file
         if isinstance(f, str) and f.endswith(".ics"):
             calendar = ics.Calendar(open(os.path.join(dirname, f)))
+            #for event in calendar.events:
+                #print(f"INCLUDED: {f}")
+                #event.extra.append(ics.ContentLine(name='x-yaml2ics-source', value=str(f)))
             all_events.extend(calendar.events)
             continue
 
