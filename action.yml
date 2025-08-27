@@ -1,0 +1,61 @@
+# CC-0 (public domain)
+# but please link to the source so that people can more easily reuse
+# (if relevant)
+
+name: git-calendar
+description: Manage multiple branches in gh-pages
+
+inputs:
+  calendars:
+    description: 'Input calendar files'
+    default: 'calendars/*.yaml'
+  output_dir:
+    description: 'Output directory (default output/)'
+    default: 'output/'
+  extra_options:
+    description: 'extra options to git-calendar'
+    default: ''
+  index_file:
+    description: 'index.html summary file (default: index.html)'
+    default: index.html
+  html_body_file:
+    description: 'Like index.html, but only the part within body tags, for inclusion into other files'
+    default: ''
+  pages_deploy:
+    description: "Deploy to GitHub pages.  Use only if you don't have another pages deployment.  Default: true."
+    default: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      shell: bash
+      run: |
+        #pip install https://github.com/coderefinery/git-calendar/archives/main.zip
+        pip install ${{ github.action_path }}
+    - name: build
+      shell: bash
+      run: |
+        git-calendar\
+            ${{ inputs.calendars }} \
+            ${{ inputs.output_dir}} \
+            --edit-link=https://github.com/$GITHUB_REPOSITORY \
+            ${{ inputs.index_file && format('--index={0}', inputs.index_file) }} \
+            ${{ inputs.html_body_file && format('--html-body={0}', inputs.html_body_file) }} \
+            ${{ inputs.extra_options }}
+    - name: List outputs
+      shell: bash
+      run: |
+        find ${{ inputs.output_dir }} | sort
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v4
+      with:
+        path: ${{ inputs.output_dir }}
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v4
+      if: ${{ inputs.pages_deploy }}
+

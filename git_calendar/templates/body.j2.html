@@ -25,7 +25,7 @@
     )
     {%- endif %}
     {% if c.data.links -%}
-    ( {%- for href, text in c.data.links %}<a href="{{href}}">{{text}}</a>{% endfor %}{%if not loop.last%}, {% endif -%}
+    ( {%- for href, text in c.data.links %}<a href="{{href}}">{{text}}</a>{%if not loop.last%}, {% endif %}{% endfor -%}
     )
     {%- endif %}
   </li>

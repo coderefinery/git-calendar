@@ -224,9 +224,9 @@ def files_to_events(files: list, dirname: str = "") -> (ics.Calendar, str):
     all_events = []
     name = None
     processed_files, temporary_files = gather_files(files, dirname=dirname)
-    print(processed_files)
-    print(files)
-    print(dirname)
+    #print(processed_files)
+    #print(files)
+    #print(dirname)
     for f in processed_files:
         print(f"Processing {f}")
         # If it is a raw ICS file
