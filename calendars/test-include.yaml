@@ -4,4 +4,3 @@ timezone: Europe/Helsinki
 include:
   - 'example.yaml'
   - 'https://coderefinery.github.io/calendar/workshops.ics'
-  - 'https://enccs.se/events-at-enccs/list/?shortcode=5210815c&ical=1'
