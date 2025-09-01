@@ -10,16 +10,16 @@ license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 dependencies = [
-    #"yaml2ics",
-    "yaml2ics @ https://github.com/scientific-python/yaml2ics/archive/refs/heads/main.zip",
+    #"yaml2ics",  # now vendored
+    #"yaml2ics @ https://github.com/scientific-python/yaml2ics/archive/refs/heads/main.zip",
     "python-dateutil",
     "jinja2",
     "mutt-ics",
     "pyyaml",
     "markdown-it-py",
-    # TODO: how to install from github here?  Then remove this
-    # from requirements.txt
-    "ics @ https://github.com/ics-py/ics-py/archive/refs/heads/main.zip",
+    # There is some new unreleased ics-py feature needed.  As of 2025,
+    # last release was in 2022.
+    "ics @ https://github.com/ics-py/ics-py/archive/3b7d072.zip",  # main probably works too
 ]
 
 [project.scripts]
