@@ -20,8 +20,8 @@ def main(argv=sys.argv[1:]):
     parser = argparse.ArgumentParser()
     parser.add_argument('inputs', nargs='+', help="input files", type=Path)
     parser.add_argument('output', help="output directory", type=str)
-    parser.add_argument('--index', '-i', help="output HTML index file", type=str)
-    parser.add_argument('--html-body', '-b', help="output HTML body to be included in other pages", type=str)
+    parser.add_argument('--index', '-i', help="output HTML index file relative to OUT (example: index.html)", type=str)
+    parser.add_argument('--html-body', '-b', help="output HTML with only <body> element, to be included in other pages.  Relative to OUT (example: body.html)", type=str)
     parser.add_argument('--timezone', action='append', help="zoneinfo timezone names", type=str, default=[])
     parser.add_argument('--edit-link', help='Link to edit, will be added to the generated page.')
     parser.add_argument('--base-url', help='Base url to append in front of all .ics files '
